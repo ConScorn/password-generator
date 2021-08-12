@@ -4,7 +4,7 @@
 
 This is a random password generator, created to give the user a secure password, with characters types of their choice.
 
-See the deployed site: (https://conscorn.github.io/portfolio/).
+See the deployed site: (https://conscorn.github.io/password-generator/).
 
 ## License
 
