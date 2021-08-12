@@ -108,8 +108,6 @@ let passwordLengthFinal = [];
 function randChar(array) {
   let index = Math.floor(Math.random() * array.length);
   console.log(index);
-  // let char = array[index];
-  // console.log(char);
   return array[index];
 }
 
@@ -122,7 +120,9 @@ function generatePassword() {
   if (passwordLength < 8 || passwordLength > 128) {
     passwordLength = window.prompt("Please choose a number between 8 and 128.");
   } else {
-    window.alert(`OK! Your password will be ${passwordLength} long.`);
+    window.alert(
+      `OK! Your password will be ${passwordLength} characters long.`
+    );
     passwordLengthFinal.push(passwordLength);
   }
 
@@ -131,8 +131,9 @@ function generatePassword() {
       "Will your password have lower case letters?"
     );
     if (lowercase === true) {
-      possibleChars.concat(lowerCaseCharacters);
+      possibleChars.push(...lowerCaseCharacters);
       haveChars.push(randChar(lowerCaseCharacters));
+      console.log(haveChars);
       window.alert("Got it! Your password will include lower case letters.");
     } else {
       window.alert("Got it! No lower case letters will be included.");
@@ -144,8 +145,9 @@ function generatePassword() {
       "Will your password have upper case characters?"
     );
     if (uppercase === true) {
-      possibleChars.concat(upperCaseCharacters);
+      possibleChars.push(...upperCaseCharacters);
       haveChars.push(randChar(upperCaseCharacters));
+      console.log(haveChars);
       window.alert(
         "Sounds good! Your password will include upper case letters."
       );
@@ -157,8 +159,9 @@ function generatePassword() {
   function numericChars() {
     let number = window.confirm("Will your password have numbers?");
     if (number === true) {
-      possibleChars.concat(numericCharacters);
+      possibleChars.push(...numericCharacters);
       haveChars.push(randChar(numericCharacters));
+      console.log(haveChars);
       window.alert("Alright! Your password will include numbers.");
     } else {
       window.alert("Alright! No numbers will be included.");
@@ -168,8 +171,9 @@ function generatePassword() {
   function specialChars() {
     let special = window.confirm("Will your password have special characters?");
     if (special === true) {
-      possibleChars.concat(specialCharacters);
+      possibleChars.push(...specialCharacters);
       haveChars.push(randChar(specialCharacters));
+      console.log(possibleChars);
       window.alert(
         "No Problem! Your password will include special characters."
       );
@@ -183,19 +187,9 @@ function generatePassword() {
   numericChars();
   specialChars();
 
-  // if (upper != true || lower != true || number != true || special != true) {
-  //   window.alert(
-  //     "Please choose at least one type of character, or your password will be blank."
-  //   );
-  //   upperCaseLetters();
-  //   lowerCaseLetters();
-  //   numericChars();
-  //   specialChars();
-  // }
-
   for (let i = 0; i < passwordLengthFinal; i++) {
-    password.push(randChar(haveChars));
-    console.log(haveChars);
+    password.push(randChar(possibleChars));
+    console.log(possibleChars);
   }
   return password.join("");
 }
